@@ -38,6 +38,7 @@ template<class T> void DequeArray<T>::addLast(T item){
 }
 
 template<class T> void DequeArray<T>::printDeque(){
+    this->printDequeInfo();
     std::cout << "[ ";
     int cntPerLine = 0;
     for (int i = 0; i < this->capacity; i++){
@@ -85,10 +86,13 @@ template<class T> T DequeArray<T>::removeLast(){
 }
 
 template<class T> T DequeArray<T>::get(int index){
-    if (this->getSize() > 0) {
+    if(this->getSize() == 0){
+        throw(std::runtime_error("[Error] Attempting to get element from an empty queue!"));
+    }
+    if (index < this->getSize()) {
         return *(this->array + arrayHead + index);
     } else {
-        throw(std::runtime_error("[Error] Attempting to get element from an empty queue!"));
+        throw(std::runtime_error("[Error] Attempting to access index out of bounds!"));
     }
 }
 

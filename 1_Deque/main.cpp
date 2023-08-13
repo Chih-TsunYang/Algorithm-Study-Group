@@ -7,9 +7,11 @@
 #include <string>
 #include <sstream>
 
+#include "Deque.h"
 #include "DequeArray.h"
+#include "DequeLinkedList.h"
 
-template<class T> void tryTestCase(DequeArray<T> &inst, const std::string &testCase) {
+template<class T> void tryTestCase(Deque<T> &inst, const std::string &testCase) {
     std::string op, value;
     std::stringstream ss(testCase);
     ss >> op >> value;
@@ -37,18 +39,15 @@ template<class T> void tryTestCase(DequeArray<T> &inst, const std::string &testC
         }
     } else if(op == std::string("PrintArray")){
         inst.printDeque();
-    } else if(op == std::string("ArrayInfo")) {
-        inst.printDequeInfo();
     } else {
         throw(std::runtime_error("[Error] Undefined operation:" + op));
     }
-    inst.printDeque();
 }
 
 
 int main(int argc, char* argv[]){
     std::string testCaseFileName = "";          // Leave empty if tempting to feed the cases manually.
-    DequeArray<int> inst;
+    DequeLinkedList<int> inst;
     std::istream *inputStream;
 
     if(!testCaseFileName.empty())
